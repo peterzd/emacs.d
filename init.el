@@ -57,6 +57,7 @@
 (require 'init-dired)
 (require 'init-isearch)
 (require 'init-grep)
+
 (require 'init-uniquify)
 (require 'init-ibuffer)
 (require 'init-flycheck)
@@ -165,3 +166,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+(put 'erase-buffer 'disabled nil)

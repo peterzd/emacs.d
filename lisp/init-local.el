@@ -37,4 +37,22 @@
         "xelatex -interaction nonstopmode -output-directory %o %f"
         "xelatex -interaction nonstopmode -output-directory %o %f"))
 
+;;; 给elscreen绑定一些操作
+
+(defun my-create-new-tab ()
+  "Run elscreen-start, then run elscreen-create."
+  (interactive)
+  (elscreen-start)
+  (elscreen-create))
+;; (elscreen-start)
+(global-set-key (kbd "C-c t t") 'my-create-new-tab)
+;; (global-set-key (kbd "C-x t t") 'elscreen-create)
+(global-set-key (kbd "C-c t n") 'elscreen-next)
+(global-set-key (kbd "C-c t p") 'elscreen-previous)
+(global-set-key (kbd "C-c t k") 'elscreen-kill)
+(global-set-key (kbd "C-c t o") 'elscreen-kill-others)
+(global-set-key (kbd "C-c t g") 'elscreen-goto)
+
+
+
 (provide 'init-local)

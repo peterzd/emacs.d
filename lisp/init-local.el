@@ -37,15 +37,15 @@
         "xelatex -interaction nonstopmode -output-directory %o %f"
         "xelatex -interaction nonstopmode -output-directory %o %f"))
 
-;;; 给elscreen绑定一些操作
-
+;;; 给elscreen绑定一些操作, emacs tab
 (defun my-create-new-tab ()
   "Run elscreen-start, then run elscreen-create."
   (interactive)
   (elscreen-start)
-  (elscreen-create))
-;; (elscreen-start)
+  (elscreen-clone))
+
 (global-set-key (kbd "C-c t t") 'my-create-new-tab)
+(global-set-key (kbd "C-c t c") 'elscreen-clone)
 ;; (global-set-key (kbd "C-x t t") 'elscreen-create)
 (global-set-key (kbd "C-c t n") 'elscreen-next)
 (global-set-key (kbd "C-c t p") 'elscreen-previous)
@@ -53,6 +53,17 @@
 (global-set-key (kbd "C-c t o") 'elscreen-kill-others)
 (global-set-key (kbd "C-c t g") 'elscreen-goto)
 
+;; set auto-fill to all major-mode
+(setq auto-fill-function 'do-auto-fill)
 
+;; create tags file for the project
+
+(setq path-to-ctags "/usr/local/bin/ctags")
+(defun create-tags (dir-name)
+  "Create tags file in DIR-NAME."
+  (interactive "DDirectory: ")
+  (shell-command
+   (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name))))
 
 (provide 'init-local)
+;;; init-local.el ends here
